@@ -1,0 +1,20 @@
+cmake_minimum_required(VERSION 3.28)
+project(obs_qsv_lowpower LANGUAGES C CXX)
+set(CMAKE_C_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
+foreach(var OBS_SOURCE VPL_SOURCE VPL_LIBRARY IMPORT_DIR)
+  if(NOT DEFINED ${var})
+    message(FATAL_ERROR "Missing ${var}; use scripts/build.ps1")
+  endif()
+endforeach()
+set(QSV "${CMAKE_CURRENT_SOURCE_DIR}/src")
+file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/obsconfig.h" "#pragma once\n#define OBS_RELEASE_CANDIDATE 0\n#define OBS_BETA 0\n")
+add_library(obs-qsv-lowpower MODULE
+ "${QSV}/obs-qsv11-plugin-main.c" "${QSV}/obs-qsv11.c"
+ "${QSV}/QSV_Encoder.cpp" "${QSV}/QSV_Encoder_Internal.cpp"
+ "${QSV}/common_utils.cpp" "${QSV}/common_utils_windows.cpp" "${QSV}/common_directx11.cpp")
+target_include_directories(obs-qsv-lowpower PRIVATE "${OBS_SOURCE}/libobs" "${OBS_SOURCE}/deps/w32-pthreads" "${CMAKE_CURRENT_BINARY_DIR}" "${VPL_SOURCE}/api")
+target_compile_definitions(obs-qsv-lowpower PRIVATE ENABLE_HEVC _CRT_SECURE_NO_WARNINGS NOMINMAX WIN32_LEAN_AND_MEAN)
+target_compile_options(obs-qsv-lowpower PRIVATE /utf-8 /W3)
+target_link_libraries(obs-qsv-lowpower PRIVATE "${IMPORT_DIR}/obs.lib" "${IMPORT_DIR}/w32-pthreads.lib" "${VPL_LIBRARY}" d3d11 dxgi dxguid Shlwapi advapi32 cfgmgr32)
+set_target_properties(obs-qsv-lowpower PROPERTIES PREFIX "")
