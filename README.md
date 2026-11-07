@@ -1,6 +1,6 @@
 # OBS QSV HEVC Low Power（实验版）
 
-为 OBS Studio 增加独立的 **QuickSync HEVC (Low Power - Experimental)** 编码器。基于 OBS 33.0.1 QSV 源码，强制 Intel HEVC Low Power 路径并关闭前瞻；用于排查普通路径 TU1 编码跟不上实时帧率的问题。**有源码修改，不只是编译选项。**
+为 OBS Studio 增加独立的 **QuickSync HEVC (Low Power - Experimental)** 编码器。基于 OBS 33.0.1 QSV 源码，强制 Intel HEVC Low Power 路径并关闭前瞻；用于排查普通路径 TU1 编码跟不上实时帧率的问题。
 
 这是个人实验项目，与 OBS Project / Intel 无隶属关系。不是通用修复，也不保证所有硬件、驱动、OBS 版本或直播平台可用。
 
