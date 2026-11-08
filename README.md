@@ -1,6 +1,6 @@
 # OBS QSV HEVC Low Power
 
-一个用于 Windows OBS Studio 的实验性 HEVC 编码插件。它使用 Intel 的 Low Power（VDEnc）编码路径，可在部分设备上缓解 QSV HEVC 编码跳帧。
+一个用于 Windows OBS Studio 的实验性 HEVC 编码插件。使用 Intel 的 Low Power（VDEnc）编码路径，可在部分设备上提升 QSV HEVC 编码性能。
 
 插件会新增 **QuickSync HEVC (Low Power - Experimental)**，与原版 QSV 编码器并存。
 
@@ -51,7 +51,7 @@ obs-studio/
 
 先沿用自己的分辨率、帧率和码率，录制后检查 OBS“统计”中的编码跳帧，并播放文件确认输出正常。TU1、6400 kbps、1080p60、B 帧 2 是本项目的测试参数，不是固定要求。
 
-直播时请确认平台支持 HEVC，按平台要求设置 CBR、码率及关键帧间隔。CQP 录制效果不能直接代表 CBR 直播效果。
+编码时请确认平台支持 HEVC，按平台要求设置 CBR、码率及关键帧间隔。CQP 录制效果不能直接代表 CBR 直播效果。
 
 Low Power 不代表降频或降低分辨率。同一 TU 档位下，它与普通路径的画质也可能不同。本项目的短片对比没有显示平均画质下降，但不足以保证所有场景的效果；测试数据和前瞻设置见[技术说明](docs/technical-notes.md)。
 
