@@ -27,7 +27,7 @@ Intel VPL调度库从官方libvpl commit 412c5cffe3022d5ebb8a955c3b30afe7bd2e392
 
 TU1、6400kbps、1080p60、B帧2是在独立测试配置中设置，不是把这些值写死在插件里。其他参数继续使用原QSV实现。
 Low Power和普通路径的内部编码工具及质量/速度取舍由Intel驱动实现。两者都返回TargetUsage1，不保证等画质。
-该插件强制HEVC LowPower并关闭前瞻，是实验版本，不是通用于所有平台的官方替代品。未来OBS升级需重新核对API和兼容性。
+该插件显式请求HEVC LowPower并清零内部前瞻深度请求，是实验版本，不是通用于所有平台的官方替代品。未来OBS升级需重新核对API和兼容性。
 
 ## 验证
 
